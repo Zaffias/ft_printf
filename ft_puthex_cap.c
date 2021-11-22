@@ -6,24 +6,20 @@
 /*   By: rpereda- <rpereda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 13:38:24 by rpereda-          #+#    #+#             */
-/*   Updated: 2021/11/18 15:49:02 by rpereda-         ###   ########.fr       */
+/*   Updated: 2021/11/22 17:04:53 by rpereda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-ssize_t	ft_puthex_cap(unsigned int nbr)
+ssize_t	ft_puthex_cap(unsigned int nbr, ssize_t *read)
 {
-	unsigned int	res;
-	ssize_t 		rd;
-	
-	res = nbr;
-	if (res >= 16)
+	if (nbr >= 16)
 	{
-		ft_puthex_cap(res / 16);
-		rd += ft_putchar(HEX_C[res % 16]);
+		ft_puthex_cap(nbr / 16, read);
+		*read += ft_putchar(HEX_C[nbr % 16]);
 	}
 	else
-		rd += ft_putchar(HEX_C[res % 16]);
-	return (rd);
+		*read += ft_putchar(HEX_C[nbr % 16]);
+	return (*read);
 }

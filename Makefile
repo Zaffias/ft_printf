@@ -6,6 +6,7 @@ SRCS	=		ft_putchar.c \
 				ft_puthex_cap.c \
 				ft_puthex_low.c \
 				ft_putstr.c \
+				ft_printf.c
 
 
 SRCH	=		ft_printf.h

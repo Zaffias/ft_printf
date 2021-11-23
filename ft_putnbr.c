@@ -6,30 +6,20 @@
 /*   By: rpereda- <rpereda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:43:41 by rpereda-          #+#    #+#             */
-/*   Updated: 2021/11/22 17:06:23 by rpereda-         ###   ########.fr       */
+/*   Updated: 2021/11/23 19:32:54 by rpereda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-ssize_t	ft_putnbr(int n, ssize_t *read)
+ssize_t	ft_putnbr(int n)
 {
 	if (n == -2147483648)
-	{
-		ft_putnbr(n / 10, read);
-		*read += ft_putchar('8');
-	}
+		return(write(1,"-2147483648",11));
 	if (n < 0)
-	{
-		*read += ft_putchar('-');
-		ft_putnbr(-n, *read);
-	}
+		return(ft_putchar('-') + ft_putnbr(-n));
 	else if (n > 9)
-		{
-			ft_putnbr(n / 10, read);
-			ft_putnbr(n % 10, read);
-		}
+		return(ft_putnbr(n / 10) + ft_putnbr(n % 10));
 	else
-		*read += ft_putchar(n % 10 + '0');
-	return (*read);
+		return(ft_putchar(n % 10 + '0'));
 }
